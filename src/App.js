@@ -9,10 +9,10 @@ import TutorialsList from "./components/TutorialsList";
 
 function App() {
   return (
-    <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+    <div className="min-h-screen bg-white">
+      <nav className="bg-white border-b border-gray-200">
         <a href="/tutorials" className="navbar-brand">
-          bezKoder
+          LEE
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
