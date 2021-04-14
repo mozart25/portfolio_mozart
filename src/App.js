@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -9,10 +9,10 @@ import TutorialsList from "./components/TutorialsList";
 
 function App() {
   return (
-    <div>
+    <Router>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/tutorials" className="navbar-brand">
-          LEE's Page
+          bezKoder
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -35,7 +35,7 @@ function App() {
           <Route path="/tutorials/:id" component={Tutorial} />
         </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
 

@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
-import TutorialDataService from "../services/TutorialService";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import {
+    retrieveTutorials,
+    findTutorialsByTitle,
+    deleteAllTutorials,
+} from "../actions/tutorials";
+
 const TutorialsList = () => {
-    const [tutorials, setTutorials] = useState([]);
     const [currentTutorial, setCurrentTutorial] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
 
+    const tutorials = useSelector(state => state.tutorials);
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        retrieveTutorials();
+        dispatch(retrieveTutorials());
     }, []);
 
     const onChangeSearchTitle = e => {
@@ -17,19 +25,7 @@ const TutorialsList = () => {
         setSearchTitle(searchTitle);
     };
 
-    const retrieveTutorials = () => {
-        TutorialDataService.getAll()
-            .then(response => {
-                setTutorials(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
-    const refreshList = () => {
-        retrieveTutorials();
+    const refreshData = () => {
         setCurrentTutorial(null);
         setCurrentIndex(-1);
     };
@@ -40,10 +36,10 @@ const TutorialsList = () => {
     };
 
     const removeAllTutorials = () => {
-        TutorialDataService.removeAll()
+        dispatch(deleteAllTutorials())
             .then(response => {
-                console.log(response.data);
-                refreshList();
+                console.log(response);
+                refreshData();
             })
             .catch(e => {
                 console.log(e);
@@ -51,14 +47,8 @@ const TutorialsList = () => {
     };
 
     const findByTitle = () => {
-        TutorialDataService.findByTitle(searchTitle)
-            .then(response => {
-                setTutorials(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        refreshData();
+        dispatch(findTutorialsByTitle(searchTitle));
     };
 
     return (

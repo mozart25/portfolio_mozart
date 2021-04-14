@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import TutorialDataService from "../services/TutorialService";
+import { useDispatch } from "react-redux";
+import { createTutorial } from "../actions/tutorials";
 
 const AddTutorial = () => {
     const initialTutorialState = {
@@ -11,27 +12,27 @@ const AddTutorial = () => {
     const [tutorial, setTutorial] = useState(initialTutorialState);
     const [submitted, setSubmitted] = useState(false);
 
+    const dispatch = useDispatch();
+
     const handleInputChange = event => {
         const { name, value } = event.target;
         setTutorial({ ...tutorial, [name]: value });
     };
 
     const saveTutorial = () => {
-        var data = {
-            title: tutorial.title,
-            description: tutorial.description
-        };
+        const { title, description } = tutorial;
 
-        TutorialDataService.create(data)
-            .then(response => {
+        dispatch(createTutorial(title, description))
+            .then(data => {
                 setTutorial({
-                    id: response.data.id,
-                    title: response.data.title,
-                    description: response.data.description,
-                    published: response.data.published
+                    id: data.id,
+                    title: data.title,
+                    description: data.description,
+                    published: data.published
                 });
                 setSubmitted(true);
-                console.log(response.data);
+
+                console.log(data);
             })
             .catch(e => {
                 console.log(e);
