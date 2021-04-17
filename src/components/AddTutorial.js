@@ -7,6 +7,8 @@ const AddTutorial = () => {
         id: null,
         title: "",
         description: "",
+        skills: "",
+        url: "",
         published: false
     };
     const [tutorial, setTutorial] = useState(initialTutorialState);
@@ -20,14 +22,16 @@ const AddTutorial = () => {
     };
 
     const saveTutorial = () => {
-        const { title, description } = tutorial;
+        const { title, description, skills, url } = tutorial;
 
-        dispatch(createTutorial(title, description))
+        dispatch(createTutorial(title, description, skills, url))
             .then(data => {
                 setTutorial({
                     id: data.id,
                     title: data.title,
                     description: data.description,
+                    skills: data.skills,
+                    url: data.url,
                     published: data.published
                 });
                 setSubmitted(true);
@@ -78,6 +82,32 @@ const AddTutorial = () => {
                                 value={tutorial.description}
                                 onChange={handleInputChange}
                                 name="description"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="description">Skills</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="skills"
+                                required
+                                value={tutorial.skills}
+                                onChange={handleInputChange}
+                                name="skills"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="description">Url</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="url"
+                                required
+                                value={tutorial.urls}
+                                onChange={handleInputChange}
+                                name="url"
                             />
                         </div>
 

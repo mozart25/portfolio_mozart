@@ -74,7 +74,7 @@ const TutorialsList = () => {
                 </div>
             </div>
             <div className="col-md-6">
-                <h4>Tutorials List</h4>
+                <h4>Portfolio List</h4>
 
                 <ul className="list-group">
                     {tutorials &&
@@ -101,7 +101,7 @@ const TutorialsList = () => {
             <div className="col-md-6">
                 {currentTutorial ? (
                     <div>
-                        <h4>Tutorial</h4>
+                        <h4>Project</h4>
                         <div>
                             <label>
                                 <strong>Title:</strong>
@@ -113,6 +113,18 @@ const TutorialsList = () => {
                                 <strong>Description:</strong>
                             </label>{" "}
                             {currentTutorial.description}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Skills:</strong>
+                            </label>{" "}
+                            {currentTutorial.skills}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Url:</strong>
+                            </label>{" "}
+                            {currentTutorial.skills}
                         </div>
                         <div>
                             <label>
@@ -131,7 +143,7 @@ const TutorialsList = () => {
                 ) : (
                         <div>
                             <br />
-                            <p>Please click on a Tutorial...</p>
+                            <p>프로젝트를 선택해 주세요!!</p>
                         </div>
                     )}
             </div>

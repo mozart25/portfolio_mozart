@@ -8,9 +8,9 @@ import {
 
 import TutorialDataService from "../services/TutorialService";
 
-export const createTutorial = (title, description) => async (dispatch) => {
+export const createTutorial = (title, description, skills, url) => async (dispatch) => {
     try {
-        const res = await TutorialDataService.create({ title, description });
+        const res = await TutorialDataService.create({ title, description, skills, url });
 
         dispatch({
             type: CREATE_TUTORIAL,

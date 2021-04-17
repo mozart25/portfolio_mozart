@@ -12,12 +12,12 @@ function App() {
     <Router>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/tutorials" className="navbar-brand">
-          bezKoder
+          LEE
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link to={"/tutorials"} className="nav-link">
-              Tutorials
+              Portfolios
             </Link>
           </li>
           <li className="nav-item">

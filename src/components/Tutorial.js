@@ -8,6 +8,8 @@ const Tutorial = (props) => {
         id: null,
         title: "",
         description: "",
+        skills: "",
+        url: "",
         published: false
     };
     const [currentTutorial, setCurrentTutorial] = useState(initialTutorialState);
@@ -40,6 +42,8 @@ const Tutorial = (props) => {
             id: currentTutorial.id,
             title: currentTutorial.title,
             description: currentTutorial.description,
+            skills: currentTutorial.skills,
+            url: currentTutorial.url,
             published: status
         };
 
@@ -107,6 +111,29 @@ const Tutorial = (props) => {
                         </div>
 
                         <div className="form-group">
+                            <label htmlFor="description">Skills</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="skills"
+                                name="skills"
+                                value={currentTutorial.skills}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="description">Url</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="url"
+                                name="url"
+                                value={currentTutorial.url}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className="form-group">
                             <label>
                                 <strong>Status:</strong>
                             </label>
@@ -146,7 +173,7 @@ const Tutorial = (props) => {
             ) : (
                     <div>
                         <br />
-                        <p>Please click on a Tutorial...</p>
+                        <p>프로젝트를 선택해 주세요...</p>
                     </div>
                 )}
         </div>);
