@@ -124,13 +124,27 @@ const TutorialsList = () => {
                             <label>
                                 <strong>Url:</strong>
                             </label>{" "}
-                            {currentTutorial.skills}
+                            <a href={currentTutorial.url}>
+                                {currentTutorial.url}
+                            </a>
                         </div>
                         <div>
                             <label>
                                 <strong>Status:</strong>
                             </label>{" "}
                             {currentTutorial.published ? "Published" : "Pending"}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>CreatedAt:</strong>
+                            </label>{" "}
+                            {currentTutorial.createdAt}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>UpdatedAt:</strong>
+                            </label>{" "}
+                            {currentTutorial.updatedAt}
                         </div>
 
                         <Link

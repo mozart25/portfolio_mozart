@@ -105,7 +105,7 @@ const AddTutorial = () => {
                                 className="form-control"
                                 id="url"
                                 required
-                                value={tutorial.urls}
+                                value={tutorial.url}
                                 onChange={handleInputChange}
                                 name="url"
                             />
