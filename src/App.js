@@ -56,6 +56,8 @@ import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import TutorialsList from "./components/TutorialsList";
+import About from "./components/About";
+import Main from "./components/Main";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -95,7 +97,7 @@ const App = () => {
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
+              <Link to={"/about"} className="nav-link">
                 {/* <Link to={"/tutorials"} className="nav-link"> */}
                 About
               </Link>
@@ -158,8 +160,9 @@ const App = () => {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path={["/", "/home"]} component={Main} />
             {/* <Route exact path={["/", "/tutorials"]} component={TutorialsList} /> */}
+            <Route exact path="/about" component={About} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
