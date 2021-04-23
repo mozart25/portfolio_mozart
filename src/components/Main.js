@@ -1,18 +1,23 @@
 // import { CheckIcon } from '@heroicons/react/outline'
 import { FcOk } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { Redirect } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const tiers = [
     {
+        id: 1,
         name: '기본',
-        href: '#',
+        href: '/about',
         priceMonthly: 0,
         description: '프로필을 확인 할 수 있습니다.',
         features: ['프로필 확인']
     },
     {
+        id: 2,
         name: '고급',
-        href: '#',
+        href: '/tutorials',
         priceMonthly: '회원가입',
         description: '프로필과 프로젝트를 확인할 수 있습니다.',
         features: [
@@ -21,19 +26,23 @@ const tiers = [
         ]
     },
     {
-        name: '준비중',
+        id: 3,
+        name: '관리자',
         href: '#',
         priceMonthly: '???',
         description: '프로필과 프로젝트 그리고 취미를 확인할 수 있습니다.',
         features: [
             '프로필 확인',
-            '프로젝트 확인',
-            'Donec mauris sit in eu tincidunt etiam.',
+            '프로젝트 확인 및 수정',
+            '취미 확인',
         ]
     }
 ]
 
-export default function Example() {
+
+
+const Main = () => {
+
     return (
         <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-3">
             {tiers.map((tier) => (
@@ -45,12 +54,18 @@ export default function Example() {
                             <span className="text-4xl font-extrabold text-gray-900">${tier.priceMonthly}</span>{' '}
                             <span className="text-base font-medium text-gray-500">/click </span>
                         </p>
-                        <a
+                        {/* <a
                             href={tier.href}
                             className="mt-8 block w-full bg-purple-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-purple-700"
                         >
                             Buy {tier.name}
-                        </a>
+                        </a> */}
+                        <Link
+                            className="mt-8 block w-full bg-purple-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-purple-700"
+                            to={tier.href}
+                        >
+                            Buy {tier.name}
+                        </Link>
                     </div>
                     <div className="pt-6 pb-8 px-6">
                         <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What's included</h3>
@@ -68,3 +83,5 @@ export default function Example() {
         </div>
     )
 }
+
+export default Main;

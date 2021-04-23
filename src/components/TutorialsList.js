@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from 'react-router-dom';
+
+import UserService from "../services/UserService";
+
 import { Link } from "react-router-dom";
 
 import {
@@ -9,12 +13,18 @@ import {
 } from "../actions/tutorials";
 
 const TutorialsList = () => {
+
+    const { user: currentUser } = useSelector(state => state.auth);
+
+
     const [currentTutorial, setCurrentTutorial] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
 
     const tutorials = useSelector(state => state.tutorials);
+
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(retrieveTutorials());
@@ -50,8 +60,11 @@ const TutorialsList = () => {
         refreshData();
         dispatch(findTutorialsByTitle(searchTitle));
     };
-
+    if (!currentUser) {
+        return <Redirect to="/register" />;
+    }
     return (
+
         <div className="list row">
             <div className="col-md-8">
                 <div className="input-group mb-3">

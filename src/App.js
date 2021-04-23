@@ -91,9 +91,9 @@ const App = () => {
   return (
     <Router history={history}>
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-white bg-white">
           <Link to={"/"} className="navbar-brand">
-            Lee
+            LEE
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -105,7 +105,7 @@ const App = () => {
 
             {showModeratorBoard && (
               <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
+                <Link to={"/tutorials"} className="nav-link">
                   project
                 </Link>
               </li>
@@ -167,7 +167,7 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/user" component={BoardUser} />
-            <Route path="/mod" component={BoardModerator} />
+            <Route path="/tutorials" component={TutorialsList} />
             <Route path="/admin" component={BoardAdmin} />
           </Switch>
         </div>
