@@ -20,10 +20,24 @@ const TutorialsList = () => {
     const [currentTutorial, setCurrentTutorial] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
+
 
     const tutorials = useSelector(state => state.tutorials);
 
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        UserService.getAdminBoard().then(
+            (response) => {
+                setIsAdmin(true);
+            },
+            (error) => {
+                setIsAdmin(false);
+            }
+        );
+    }, []);
 
 
     useEffect(() => {
@@ -103,13 +117,13 @@ const TutorialsList = () => {
                             </li>
                         ))}
                 </ul>
-
-                <button
-                    className="m-3 btn btn-sm btn-danger"
-                    onClick={removeAllTutorials}
-                >
-                    Remove All
-        </button>
+                {isAdmin &&
+                    <button
+                        className="m-3 btn btn-sm btn-danger"
+                        onClick={removeAllTutorials}
+                    >
+                        Remove All
+                </button>}
             </div>
             <div className="col-md-6">
                 {currentTutorial ? (
