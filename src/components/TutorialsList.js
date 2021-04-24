@@ -173,13 +173,13 @@ const TutorialsList = () => {
                             </label>{" "}
                             {currentTutorial.updatedAt}
                         </div>
-
-                        <Link
-                            to={"/tutorials/" + currentTutorial.id}
-                            className="badge badge-warning"
-                        >
-                            Edit
-            </Link>
+                        {isAdmin &&
+                            <Link
+                                to={"/tutorials/" + currentTutorial.id}
+                                className="badge badge-warning"
+                            >
+                                수정하기
+            </Link>}
                     </div>
                 ) : (
                         <div>
