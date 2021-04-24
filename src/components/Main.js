@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const tiers = [
     {
         id: 1,
-        name: '기본',
+        name: '기본 권한',
         href: '/about',
         priceMonthly: 0,
         description: '프로필을 확인 할 수 있습니다.',
@@ -16,7 +16,7 @@ const tiers = [
     },
     {
         id: 2,
-        name: '고급',
+        name: '고급 권한',
         href: '/tutorials',
         priceMonthly: '회원가입',
         description: '프로필과 프로젝트를 확인할 수 있습니다.',
@@ -27,7 +27,7 @@ const tiers = [
     },
     {
         id: 3,
-        name: '관리자',
+        name: '관리자 권한',
         href: '#',
         priceMonthly: '???',
         description: '프로필과 프로젝트 그리고 취미를 확인할 수 있습니다.',

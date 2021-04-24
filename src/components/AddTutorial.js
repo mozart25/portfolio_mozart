@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from 'react-router-dom';
 import { createTutorial } from "../actions/tutorials";
 
 const AddTutorial = () => {
+
+    const { user: currentUser } = useSelector(state => state.auth);
+
     const initialTutorialState = {
         id: null,
         title: "",
@@ -47,6 +51,9 @@ const AddTutorial = () => {
         setTutorial(initialTutorialState);
         setSubmitted(false);
     };
+    if (!currentUser) {
+        return <Redirect to="/register" />;
+    }
 
     return (
         <div className="submit-form">

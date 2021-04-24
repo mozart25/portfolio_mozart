@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateTutorial, deleteTutorial } from "../actions/tutorials";
 import TutorialDataService from "../services/TutorialService";
 import FileUpload from "./FileUpload";
-
+import { Redirect } from 'react-router-dom';
 
 const Tutorial = (props) => {
+
+    const { user: currentUser } = useSelector(state => state.auth);
+
     const initialTutorialState = {
         id: null,
         title: "",
@@ -20,6 +23,7 @@ const Tutorial = (props) => {
     const dispatch = useDispatch();
 
     const getTutorial = id => {
+        console.log("id", id)
         TutorialDataService.get(id)
             .then(response => {
                 setCurrentTutorial(response.data);
@@ -83,6 +87,10 @@ const Tutorial = (props) => {
             });
     };
 
+    if (!currentUser) {
+        return <Redirect to="/login" />;
+    }
+
     return (
         <div>
             {currentTutorial ? (
@@ -142,7 +150,7 @@ const Tutorial = (props) => {
                             {currentTutorial.published ? "Published" : "Pending"}
                         </div>
                     </form>
-                    <FileUpload />
+                    {/* <FileUpload /> */}
                     {currentTutorial.published ? (
                         <button
                             className="badge badge-primary mr-2"

@@ -58,6 +58,8 @@ import BoardAdmin from "./components/BoardAdmin";
 import TutorialsList from "./components/TutorialsList";
 import About from "./components/About";
 import Main from "./components/Main";
+import AddTutorial from "./components/AddTutorial";
+import Tutorial from "./components/Tutorial";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -106,15 +108,15 @@ const App = () => {
             {showModeratorBoard && (
               <li className="nav-item">
                 <Link to={"/tutorials"} className="nav-link">
-                  project
+                  Project
                 </Link>
               </li>
             )}
 
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
+                <Link to={"/add"} className="nav-link">
+                  Add
                 </Link>
               </li>
             )}
@@ -166,8 +168,10 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
-            <Route path="/user" component={BoardUser} />
-            <Route path="/tutorials" component={TutorialsList} />
+            {/* <Route path="/user" component={BoardUser} /> */}
+            <Route exact path="/tutorials" component={TutorialsList} />
+            <Route exact path="/add" component={AddTutorial} />
+            <Route path="/tutorials/:id" component={Tutorial} />
             <Route path="/admin" component={BoardAdmin} />
           </Switch>
         </div>
