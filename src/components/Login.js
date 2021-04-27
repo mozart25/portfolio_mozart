@@ -62,9 +62,10 @@ const Login = (props) => {
         }
     };
 
-    if (isLoggedIn) {
-        return <Redirect from='/#/profile' to="/profile" />;
-    }
+    // if (isLoggedIn) {
+    //     // return props.history.push("/home");
+    //     return <Redirect to="/home" />;
+    // }
 
     return (
         <div className="col-md-12">

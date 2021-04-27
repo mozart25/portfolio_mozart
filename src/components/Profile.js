@@ -6,10 +6,13 @@ const Profile = () => {
     const { user: currentUser } = useSelector((state) => state.auth);
 
     if (!currentUser) {
-        return <Redirect from='/#/login' to="/login" />;
+        return <Redirect to="/login" />;
+        // return history.push("/login");
+
     }
 
     return (
+
         <div className="container">
             <header className="jumbotron">
                 <h3>
@@ -32,6 +35,7 @@ const Profile = () => {
                     currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
             </ul>
         </div>
+
     );
 };
 
