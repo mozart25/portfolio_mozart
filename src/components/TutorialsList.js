@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 
 import UserService from "../services/UserService";
+import Pagination from "@material-ui/lab/Pagination";
+import TutorialDataService from "../services/TutorialService";
 
 import { Link } from "react-router-dom";
 
@@ -16,14 +18,21 @@ const TutorialsList = () => {
 
     const { user: currentUser } = useSelector(state => state.auth);
 
-
+    // const [tutorials, setTutorials] = useState([]);
     const [currentTutorial, setCurrentTutorial] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
 
+    const [page, setPage] = useState(1);
+    const [count, setCount] = useState(0);
+    const [pageSize, setPageSize] = useState(3);
+
+    const pageSizes = [3, 6, 9];
+
 
     const tutorials = useSelector(state => state.tutorials);
+
 
     const dispatch = useDispatch();
 
@@ -39,10 +48,42 @@ const TutorialsList = () => {
         );
     }, []);
 
-
     useEffect(() => {
         dispatch(retrieveTutorials());
     }, []);
+
+    // useEffect(getTutorials, [page, pageSize]);
+
+    // const retrieveTutorials = () => {
+    //     const params = getRequestParams(searchTitle, page, pageSize);
+
+    //     TutorialDataService.getAll(params)
+    //         .then((response) => {
+    //             const { tutorials, totalPages } = response.data;
+
+    //             setTutorials(tutorials);
+    //             setCount(totalPages);
+
+    //             console.log(response.data);
+    //         })
+    //         .catch((e) => {
+    //             console.log(e);
+    //         });
+    // };
+
+    // useEffect(retrieveTutorials, [page, pageSize]);
+
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
+    const handlePageSizeChange = (event) => {
+        setPageSize(event.target.value);
+        setPage(1);
+    };
+
+
+
 
     const onChangeSearchTitle = e => {
         const searchTitle = e.target.value;
@@ -78,7 +119,6 @@ const TutorialsList = () => {
         return <Redirect to="/register" />;
     }
     return (
-
         <div className="list row">
             <div className="col-md-8">
                 <div className="input-group mb-3">
@@ -122,7 +162,7 @@ const TutorialsList = () => {
                         className="m-3 btn btn-sm btn-danger"
                         onClick={removeAllTutorials}
                     >
-                        Remove All
+                        모두 삭제하기
                 </button>}
             </div>
             <div className="col-md-6">
@@ -189,7 +229,115 @@ const TutorialsList = () => {
                     )}
             </div>
         </div>
+        // <div className="list row">
+        //     <div className="col-md-8">
+        //         <div className="input-group mb-3">
+        //             <input
+        //                 type="text"
+        //                 className="form-control"
+        //                 placeholder="Search by title"
+        //                 value={searchTitle}
+        //                 onChange={onChangeSearchTitle}
+        //             />
+        //             <div className="input-group-append">
+        //                 <button
+        //                     className="btn btn-outline-secondary"
+        //                     type="button"
+        //                     onClick={getTutorials}
+        //                 >
+        //                     Search
+        //     </button>
+        //             </div>
+        //         </div>
+        //     </div>
+        //     <div className="col-md-6">
+        //         <h4>Tutorials List</h4>
+
+        //         <div className="mt-3">
+        //             {"Items per Page: "}
+        //             <select onChange={handlePageSizeChange} value={pageSize}>
+        //                 {pageSizes.map((size) => (
+        //                     <option key={size} value={size}>
+        //                         {size}
+        //                     </option>
+        //                 ))}
+        //             </select>
+
+        //             <Pagination
+        //                 className="my-3"
+        //                 count={count}
+        //                 page={page}
+        //                 siblingCount={1}
+        //                 boundaryCount={1}
+        //                 variant="outlined"
+        //                 shape="rounded"
+        //                 onChange={handlePageChange}
+        //             />
+        //         </div>
+
+        //         <ul className="list-group">
+        //             {tutorialsreal.tutorials &&
+        //                 tutorialsreal.tutorials.map((tutorial, index) => (
+        //                     <li
+        //                         className={
+        //                             "list-group-item " + (index === currentIndex ? "active" : "")
+        //                         }
+        //                         onClick={() => setActiveTutorial(tutorial, index)}
+        //                         key={index}
+        //                     >
+        //                         {tutorial.title}
+        //                     </li>
+        //                 ))}
+        //         </ul>
+
+        //         <button
+        //             className="m-3 btn btn-sm btn-danger"
+        //             onClick={removeAllTutorials}
+        //         >
+        //             Remove All
+        // </button>
+        //     </div>
+        //     <div className="col-md-6">
+        //         {currentTutorial ? (
+        //             <div>
+        //                 <h4>Tutorial</h4>
+        //                 <div>
+        //                     <label>
+        //                         <strong>Title:</strong>
+        //                     </label>{" "}
+        //                     {currentTutorial.title}
+        //                 </div>
+        //                 <div>
+        //                     <label>
+        //                         <strong>Description:</strong>
+        //                     </label>{" "}
+        //                     {currentTutorial.description}
+        //                 </div>
+        //                 <div>
+        //                     <label>
+        //                         <strong>Status:</strong>
+        //                     </label>{" "}
+        //                     {currentTutorial.published ? "Published" : "Pending"}
+        //                 </div>
+
+        //                 <Link
+        //                     to={"/tutorials/" + currentTutorial.id}
+        //                     className="badge badge-warning"
+        //                 >
+        //                     Edit
+        //     </Link>
+        //             </div>
+        //         ) : (
+        //                 <div>
+        //                     <br />
+        //                     <p>Please click on a Tutorial...</p>
+        //                 </div>
+        //             )}
+        //     </div>
+        // </div>
     );
 };
 
 export default TutorialsList;
+
+
