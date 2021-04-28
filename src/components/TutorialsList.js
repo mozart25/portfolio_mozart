@@ -18,21 +18,13 @@ const TutorialsList = () => {
 
     const { user: currentUser } = useSelector(state => state.auth);
 
-    // const [tutorials, setTutorials] = useState([]);
     const [currentTutorial, setCurrentTutorial] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
 
-    const [page, setPage] = useState(1);
-    const [count, setCount] = useState(0);
-    const [pageSize, setPageSize] = useState(3);
-
-    const pageSizes = [3, 6, 9];
-
 
     const tutorials = useSelector(state => state.tutorials);
-
 
     const dispatch = useDispatch();
 
@@ -51,38 +43,6 @@ const TutorialsList = () => {
     useEffect(() => {
         dispatch(retrieveTutorials());
     }, []);
-
-    // useEffect(getTutorials, [page, pageSize]);
-
-    // const retrieveTutorials = () => {
-    //     const params = getRequestParams(searchTitle, page, pageSize);
-
-    //     TutorialDataService.getAll(params)
-    //         .then((response) => {
-    //             const { tutorials, totalPages } = response.data;
-
-    //             setTutorials(tutorials);
-    //             setCount(totalPages);
-
-    //             console.log(response.data);
-    //         })
-    //         .catch((e) => {
-    //             console.log(e);
-    //         });
-    // };
-
-    // useEffect(retrieveTutorials, [page, pageSize]);
-
-    const handlePageChange = (event, value) => {
-        setPage(value);
-    };
-
-    const handlePageSizeChange = (event) => {
-        setPageSize(event.target.value);
-        setPage(1);
-    };
-
-
 
 
     const onChangeSearchTitle = e => {
@@ -276,8 +236,8 @@ const TutorialsList = () => {
         //         </div>
 
         //         <ul className="list-group">
-        //             {tutorialsreal.tutorials &&
-        //                 tutorialsreal.tutorials.map((tutorial, index) => (
+        //             {tutorialss &&
+        //                 tutorialss.map((tutorial, index) => (
         //                     <li
         //                         className={
         //                             "list-group-item " + (index === currentIndex ? "active" : "")

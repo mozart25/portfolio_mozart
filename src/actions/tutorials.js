@@ -11,7 +11,7 @@ import TutorialDataService from "../services/TutorialService";
 export const createTutorial = (title, description, skills, url) => async (dispatch) => {
     try {
         const res = await TutorialDataService.create({ title, description, skills, url });
-
+        console.log("createTutorial", res)
         dispatch({
             type: CREATE_TUTORIAL,
             payload: res.data,
@@ -23,9 +23,11 @@ export const createTutorial = (title, description, skills, url) => async (dispat
     }
 };
 
-export const retrieveTutorials = () => async (dispatch) => {
+export const retrieveTutorials = (params) => async (dispatch) => {
     try {
-        const res = await TutorialDataService.getAll();
+        console.log("params", params)
+        const res = await TutorialDataService.getAll(params);
+        console.log("params", res)
 
         dispatch({
             type: RETRIEVE_TUTORIALS,
